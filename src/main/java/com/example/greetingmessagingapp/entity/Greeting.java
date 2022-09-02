@@ -1,4 +1,4 @@
-package entity;
+package com.example.greetingmessagingapp.entity;
 
 public class Greeting {
 
