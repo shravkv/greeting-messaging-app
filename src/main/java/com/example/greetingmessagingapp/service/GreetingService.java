@@ -22,4 +22,15 @@ public class GreetingService implements IGreetingService{
     public List<Greeting> findAllGreets(){
         return greetingRepo.findAll();
     }
+    @Override
+    public GreetingAppModel editMessage(long id, GreetingAppDTO greetingAppDTO) {
+        Optional<GreetingAppModel> isMessagePresent = greetingAppRepository.findById(id);
+        if (isMessagePresent.isPresent()) {
+            isMessagePresent.get().setMessage(greetingAppDTO.getMessage());
+            greetingAppRepository.save(isMessagePresent.get());
+            return isMessagePresent.get();
+        } else {
+            throw new RuntimeException();
+        }
+    }
 }

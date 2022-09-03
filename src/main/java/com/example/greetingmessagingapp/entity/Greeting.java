@@ -1,63 +1,22 @@
-package com.bridgelabz.greetingapp.entity;
+package com.bridgelab.greetingmessageapp.model;
 
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
-public class Greeting {
+@Data
+public class GreetingAppModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false)
+    private Long id;
+    String message;
 
-    private long id;
-    private String firstName;
-    private String lastName;
-    private String message = "Hello" + firstName + " " + lastName;
-    public Greeting() {
-
-    }
-
-    public Greeting(long id, String firstName, String lastName, String message) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public GreetingAppModel(String message) {
         this.message = message;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public GreetingAppModel() {
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 }

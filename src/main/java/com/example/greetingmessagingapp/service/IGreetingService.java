@@ -1,6 +1,6 @@
 package com.example.greetingmessagingapp.service;
 
-import com.bridgelabz.greetingapp.dto.GreetingUserDto;
+import com.example.greetingmessagingapp.dto.GreetingUserDto;
 
 import com.example.greetingmessagingapp.entity.Greeting;
 
@@ -16,4 +16,6 @@ public interface IGreetingService {
     Optional<Greeting> getById(long id);
 
     public List<Greeting> findAllGreets();
+
+    Greeting editMessage(long id, GreetingAppDTO greetingAppDTO);
 }
