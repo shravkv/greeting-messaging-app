@@ -1,5 +1,6 @@
 package com.example.greetingmessagingapp.controller;
 
+import com.example.greetingmessagingapp.dto.GreetingUserDto;
 import com.example.greetingmessagingapp.entity.Greeting;
 import com.example.greetingmessagingapp.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,10 @@ public class GreetingController {
     @GetMapping("greeting/service")
     public Greeting greeting() {
         return greetingService.greetingMessage();
+    }
+
+    @PostMapping("/post/greeting")
+    private GreetingAppDto greeting(@RequestBody GreetingUserDto greetingUserDTO) {
+        return greetingService.greetingMessageByName(greetingUserDTO);
     }
 }
