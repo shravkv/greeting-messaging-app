@@ -1,37 +1,25 @@
 package com.example.greetingmessagingapp.service;
 
-import com.example.greetingmessagingapp.dto.GreetingAppDto;
-import com.example.greetingmessagingapp.dto.GreetingUserDto;
-import com.example.greetingmessagingapp.entity.Greeting;
-import org.springframework.stereotype.Service;
+import com.example.greetingmessagingapp.app.model.Greeting;
+import com.example.greetingmessagingapp.app.repository.GreetingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
-
-public class GreetingService  implements IGreetingService {
-
+public class GreetingService implements IGreetingService{
     @Autowired
-    private static final String template = "Hello world!";
-    private final AtomicLong counter = new AtomicLong();
-
-    @Override
-    public Greeting greetingMessage() {
-        return new Greeting(counter.incrementAndGet(), String.format(template));
+    GreetingRepo greetingRepo;
+    public Greeting addGreeting(Greeting greets){
+        return greetingRepo.save(greets);
+    }
+    public Optional<Greeting> findGreetingID(int id){
+        return greetingRepo.findById(id);
     }
 
-    @Override
-    public GreetingAppDto greetingMessageByName(GreetingUserDto greetingUserDto) {
-        return new GreetingAppDto(counter.IncrementAndGet(), String.format(template, greetingUserDto.getFirstName()) + " " + greetingUserDto.getLastName());
-
-    }
-
-    @Override
-    public Optional<Greeting> getById(long id) {
-        Optional<Greeting> greetById = greetingAppRepository.findById((int) id);
-        if (greetById.isPresent()) {
-            return greetById;
-        } else
-            throw new RuntimeException();
+    public List<Greeting> findAllGreets(){
+        return greetingRepo.findAll();
     }
 }

@@ -14,4 +14,6 @@ public interface IGreetingService {
     Greeting greetingMessageByName(GreetingUserDto greetingUserDto);
 
     Optional<Greeting> getById(long id);
+
+    public List<Greeting> findAllGreets();
 }
