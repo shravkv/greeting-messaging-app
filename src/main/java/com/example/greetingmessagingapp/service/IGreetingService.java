@@ -18,4 +18,6 @@ public interface IGreetingService {
     public List<Greeting> findAllGreets();
 
     Greeting editMessage(long id, GreetingAppDTO greetingAppDTO);
+
+    public void deleteGreetingID(int id);
 }

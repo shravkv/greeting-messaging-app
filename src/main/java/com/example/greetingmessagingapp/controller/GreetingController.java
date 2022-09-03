@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -49,6 +48,11 @@ public class GreetingController {
     @PutMapping("editmessage/{id}")
     public GreetingAppModel editMessage(@PathVariable long id ,@RequestBody GreetingAppDTO greetingAppDTO){
         return greetingAppService.editMessage(id,greetingAppDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteGreets(@PathVariable int id){
+        greets.deleteGreetingID(id);
     }
 
 }
