@@ -1,13 +1,14 @@
 package com.example.greetingmessagingapp.controller;
 
 import com.example.greetingmessagingapp.dto.GreetingUserDto;
-import com.example.greetingmessagingapp.entity.Greeting;
 import com.example.greetingmessagingapp.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -35,4 +36,10 @@ public class GreetingController {
     private GreetingAppDto greeting(@RequestBody GreetingUserDto greetingUserDTO) {
         return greetingService.greetingMessageByName(greetingUserDTO);
     }
+
+    @GetMapping("/find")
+    public Optional<Greeting> greetById(@PathVariable long id) {
+        return greetingService.getById(id);
+    }
+
 }

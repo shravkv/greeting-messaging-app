@@ -25,4 +25,13 @@ public class GreetingService  implements IGreetingService {
         return new GreetingAppDto(counter.IncrementAndGet(), String.format(template, greetingUserDto.getFirstName()) + " " + greetingUserDto.getLastName());
 
     }
+
+    @Override
+    public Optional<Greeting> getById(long id) {
+        Optional<Greeting> greetById = greetingAppRepository.findById((int) id);
+        if (greetById.isPresent()) {
+            return greetById;
+        } else
+            throw new RuntimeException();
+    }
 }
